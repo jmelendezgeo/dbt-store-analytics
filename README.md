@@ -71,9 +71,9 @@ Esto conectará dbt con MotherDuck, siempre que las credenciales (token) estén 
 
 ## Validación de Modelos
 Este proyecto aplica tests de dbt para asegurar la calidad de los datos:
-✅ not_null en claves primarias (customer_id, order_id, product_id)
-✅ unique en identificadores
-✅ accepted_range en métricas financieras (lifetime_value, amount_sales)
+- ✅ not_null en claves primarias (customer_id, order_id, product_id)
+- ✅ unique en identificadores
+- ✅ accepted_range en métricas financieras (lifetime_value, amount_sales)
 
 Para ejecutar los test usa el comando
 
@@ -105,3 +105,7 @@ Esto ejecutara los siguientes pasos:
 - Generación de documentación (`dbt docs generate`)
 - Deploy de documentación en localhost puerto 8080 (`dbt docs serve`)
 
+## Contacto
+Contacto Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
+
+Jesus Melendez - https://www.linkedin.com/in/jesusmelendezgeo/ - jrmelendez.martin@gmail.com https://github.com/jmelendezgeo
