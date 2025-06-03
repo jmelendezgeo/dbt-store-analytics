@@ -1,0 +1,22 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.21",
+
+	"postCreateCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry install --no-root",	
+	
+	"customizations": {
+		"vscode": {
+		"extensions": ["ms-python.python", 
+						"github.copilot",
+						"github.copilot-chat"]
+	    }
+	}
+
+	
+}
+
+
+

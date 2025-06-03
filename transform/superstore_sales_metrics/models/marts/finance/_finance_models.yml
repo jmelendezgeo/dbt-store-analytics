@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: order_line
+    description: "Detalle de cada producto dentro de un pedido. Este modelo es clave para análisis financieros y de ventas, permitiendo calcular ingresos por producto, regiones y clientes."
+
+    columns:
+      - name: id
+        description: "Identificador único de cada línea de pedido."
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        description: "Identificador del pedido al que pertenece esta línea de producto."
+        tests:
+          - not_null
+
+      - name: order_date
+        description: "Fecha en que se realizó el pedido."
+
+      - name: ship_date
+        description: "Fecha en que el producto fue enviado al cliente."
+
+      - name: customer_id
+        description: "Identificador único del cliente que realizó la compra."
+        tests:
+          - not_null
+
+      - name: customer_name
+        description: "Nombre del cliente."
+
+      - name: customer_category
+        description: "Segmento del cliente según criterios comerciales."
+
+      - name: country
+        description: "País donde se realizó la compra."
+
+      - name: city
+        description: "Ciudad de envío del pedido."
+
+      - name: state
+        description: "Estado o provincia donde se envió el pedido."
+
+      - name: region
+        description: "Región geográfica del cliente."
+
+      - name: product_id
+        description: "Identificador único del producto."
+
+      - name: product_category
+        description: "Categoría principal del producto."
+
+      - name: product_sub_category
+        description: "Subcategoría específica del producto."
+
+      - name: product_name
+        description: "Nombre del producto como aparece en el catálogo."
+
+      - name: amount_sales
+        description: "Monto total de ventas generado por esta línea de pedido."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: orders
+    description: "Resumen financiero de pedidos. Este modelo agrupa líneas de pedido y permite analizar ingresos y volumen de compras por cliente y ubicación."
+
+    columns:
+      - name: id
+        description: "Identificador único del pedido."
+        tests:
+          - not_null
+          - unique
+
+      - name: order_date
+        description: "Fecha de creación del pedido."
+
+      - name: ship_date
+        description: "Fecha de envío del pedido."
+
+      - name: customer_id
+        description: "Identificador único del cliente."
+        tests:
+          - not_null
+
+      - name: customer_name
+        description: "Nombre completo del cliente."
+
+      - name: customer_category
+        description: "Segmento del cliente basado en criterios comerciales."
+
+      - name: country
+        description: "País de residencia del cliente."
+
+      - name: city
+        description: "Ciudad donde reside el cliente."
+
+      - name: state
+        description: "Estado o provincia de residencia del cliente."
+
+      - name: region
+        description: "Región geográfica del cliente."
+
+      - name: amount_total
+        description: "Monto total gastado por el cliente en este pedido."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0

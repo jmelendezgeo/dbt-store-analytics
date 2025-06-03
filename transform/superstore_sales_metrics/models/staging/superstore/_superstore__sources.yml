@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: internal_sources
+    meta:
+        external_location: "{{ env_var('SALES_FILE_PATH') }}"
+    tables:
+      - name: sales_dataset
+        format: parquet
+
+  - name: main
+    tables:
+      - name: sales_dataset  

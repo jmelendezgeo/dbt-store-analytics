@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_superstore__order_line
+    description: "Tabla de líneas de pedidos procesados desde la fuente original de Superstore. Incluye detalles de productos, clientes y ventas."
+
+    columns:
+      - name: id
+        description: "Identificador único de cada línea de pedido."
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        description: "Identificador del pedido al que pertenece esta línea de producto."
+        tests:
+          - not_null
+
+      - name: order_date
+        description: "Fecha en que se realizó el pedido."
+      
+      - name: ship_date
+        description: "Fecha en que se envió el pedido al cliente."
+
+      - name: customer_id
+        description: "Identificador único del cliente que realizó la compra."
+
+      - name: customer_name
+        description: "Nombre completo del cliente asociado al pedido."
+
+      - name: customer_category
+        description: "Segmento o categoría del cliente según criterios de negocio."
+
+      - name: country
+        description: "País donde se realizó la compra."
+
+      - name: city
+        description: "Ciudad de envío del pedido."
+
+      - name: state
+        description: "Estado o provincia donde se envió el pedido."
+
+      - name: region
+        description: "Región geográfica a la que pertenece la ubicación del cliente."
+
+      - name: product_id
+        description: "Identificador único del producto comprado."
+
+      - name: product_category
+        description: "Categoría principal del producto."
+
+      - name: product_sub_category
+        description: "Subcategoría específica del producto."
+
+      - name: product_name
+        description: "Nombre del producto como aparece en el catálogo."
+
+      - name: amount_sales
+        description: "Monto total de ventas generado por esta línea de pedido."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0

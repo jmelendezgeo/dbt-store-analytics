@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: customers
+    description: "Modelo de clientes con información clave para análisis de marketing. Incluye datos sobre comportamiento de compra, segmentación y métricas de fidelización."
+
+    columns:
+      - name: customer_id
+        description: "Identificador único de cada cliente."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_name
+        description: "Nombre completo del cliente."
+
+      - name: customer_category
+        description: "Segmento de cliente basado en criterios de negocio y comportamiento de compra."
+
+      - name: first_order_date
+        description: "Fecha en la que el cliente realizó su primera compra."
+        tests:
+          - not_null
+
+      - name: last_order_date
+        description: "Fecha en la que el cliente realizó su última compra."
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Cantidad total de pedidos realizados por el cliente."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+      - name: lifetime_value
+        description: "Monto total gastado por el cliente en todas sus compras."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+      - name: avg_ship_time
+        description: "Promedio de días entre la fecha de orden y la fecha de envío."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+      - name: avg_days_between_orders
+        description: "Promedio de días entre pedidos consecutivos del cliente, útil para analizar frecuencia de compra."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
